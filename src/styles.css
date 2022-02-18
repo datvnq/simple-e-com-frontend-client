@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+  :host {
+    text-align: center;
+  }
+
+  nz-header,
+  nz-footer {
+    background: #fff;
+    color: #fff;
+  }
+
+  nz-footer {
+    line-height: 1;
+  }
+
+  nz-sider {
+    background: #3ba0e9;
+    color: #fff;
+    line-height: 120px;
+  }
+
+  nz-content {
+    background: rgba(16, 142, 233, 1);
+    color: #fff;
+    min-height: 120px;
+    line-height: 120px;
+  }
+
+  nz-layout {
+    margin-bottom: 48px;
+  }
+
+  nz-layout nz-layout,
+  nz-layout:last-child {
+    margin: 0;
+  }
+
+  .inner-box {
+    padding: 8px 0;
+  }
+
+  /* login component */
+  
+
+
