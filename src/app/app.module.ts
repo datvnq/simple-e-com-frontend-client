@@ -8,8 +8,6 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-
-import { Router } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './components/signup/signup.component';
@@ -18,6 +16,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import { AuthService } from './services/auth.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NzLayoutModule,
     HttpClientModule,
@@ -37,6 +38,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     NzButtonModule,
     NzGridModule,
     NzDividerModule,
+    NzNotificationModule,
     ReactiveFormsModule
   ],
   providers: [AuthService],
