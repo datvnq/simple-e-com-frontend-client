@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false;
         this.loginSuccess = true;
         localStorage.setItem('token', this.username);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/products']);
       },
       () => {
         this.invalidLogin = true;

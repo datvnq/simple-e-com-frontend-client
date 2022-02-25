@@ -23,7 +23,7 @@ export class AuthService {
   signUp(user: User): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}/api/signup`, user).pipe(
       tap(() => {
-        this.notification.success('Tạo tài khoản thành công!', 'Tạo tài khoản thành công!');
+        this.notification.success('You have signed up successfully!', 'Please login to continue');
       })
     )
   }

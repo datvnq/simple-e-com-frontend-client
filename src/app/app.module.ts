@@ -8,6 +8,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './components/signup/signup.component';
@@ -15,9 +16,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import { AuthService } from './services/auth.service';
-import { HomepageComponent } from './components/homepage/homepage.component';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductService } from './services/product.service';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     ProductListComponent,
     LoginStatusComponent,
-    HomepageComponent
+    ProductCategoryComponent,
+    ProductDetailsComponent,
+    CartStatusComponent,
+    CartDetailsComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +49,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NzGridModule,
     NzDividerModule,
     NzNotificationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzCardModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

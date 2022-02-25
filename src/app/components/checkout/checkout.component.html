@@ -1,0 +1,295 @@
+<div class=" container-fluid my-5 ">
+    <div class="row justify-content-center ">
+        <div class="col-xl-10">
+            <div class="card shadow-lg ">
+                <div class="row p-2 mt-3 justify-content-between mx-sm-2">
+
+                    <div class="row mx-auto justify-content-center">
+                        <div class="col-12 mt-3 ">
+                            <a routerLink="/products">Back to homepage</a>
+                        </div>
+                    </div>
+
+                    <!-- Checkout form -->
+                    <div class="row justify-content-around">
+                        <div class="col-md-5">
+                            <div class="card border-0">
+                                <div class="card-header pb-0">
+                                    <h2 class="card-title space">Checkout</h2>
+                                    <p class="card-text text-muted mt-4 space">Billing info</p>
+                                    <hr class="my-0">
+                                </div>
+                                <div class="card-body">
+                                    <form [formGroup]="checkoutFormGroup">
+
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-6 pr-sm-2">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">First name</label>
+                                                    <input formControlName="firstName" type="text" class="form-control"
+                                                        placeholder="First name">
+
+                                                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="firstName.errors.required || firstName.errors.notOnlyWhiteSpace">
+                                                            First name is required
+                                                        </div>
+                                                        <div *ngIf="firstName.errors.minlength">
+                                                            First name must be at least 2 characters long
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">Last name</label>
+                                                    <input formControlName="lastName" type="text" class="form-control"
+                                                        placeholder="Last name">
+
+                                                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="lastName.errors.required || lastName.errors.notOnlyWhiteSpace">
+                                                            Last name is required
+                                                        </div>
+                                                        <div *ngIf="lastName.errors.minlength">
+                                                            Last name must be at least 2 characters long
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-6 pr-sm-2">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">Email</label>
+                                                    <input formControlName="email" type="text" class="form-control"
+                                                        placeholder="Email">
+
+                                                    <div *ngIf="firstName.invalid && (email.dirty || email.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div *ngIf="email.errors.required">
+                                                            Email is required
+                                                        </div>
+                                                        <div *ngIf="email.errors.pattern">
+                                                            Email must be a valid email address format
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">Phone number</label>
+                                                    <input formControlName="phoneNumber" type="text"
+                                                        class="form-control" placeholder="Phone number">
+
+                                                    <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div *ngIf="phoneNumber.errors.required">
+                                                            Phone number is required
+                                                        </div>
+                                                        <div *ngIf="phoneNumber.errors.pattern">
+                                                            Phone number must be in a valid format
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-6 pr-sm-2">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">Address</label>
+                                                    <input formControlName="address" type="text" class="form-control"
+                                                        placeholder="Address">
+
+                                                    <div *ngIf="address.invalid && (address.dirty || address.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="address.errors.required || address.errors.notOnlyWhiteSpace">
+                                                            Address is required
+                                                        </div>
+                                                        <div *ngIf="address.errors.minlength">
+                                                            Address must be at least 2 characters long
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">Town / City</label>
+                                                    <input formControlName="city" type="text" class="form-control"
+                                                        placeholder="Town or City">
+
+                                                    <div *ngIf="city.invalid && (city.dirty || city.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="city.errors.required || city.errors.notOnlyWhiteSpace">
+                                                            Town / City is required
+                                                        </div>
+                                                        <div *ngIf="firstName.errors.minlength">
+                                                            Town / City must be at least 2 characters long
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-6 pr-sm-2">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">State / Country</label>
+                                                    <input formControlName="country" type="text" class="form-control"
+                                                        placeholder="Country">
+
+                                                    <div *ngIf="country.invalid && (country.dirty || country.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="country.errors.required || country.errors.notOnlyWhiteSpace">
+                                                            State / Country is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small text-muted mb-1">ZIP/Postal code</label>
+                                                    <input formControlName="zipCode" type="text" class="form-control"
+                                                        placeholder="Postal code or ZIP">
+
+                                                    <div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div
+                                                            *ngIf="zipCode.errors.required || zipCode.errors.notOnlyWhiteSpace">
+                                                            ZIP/Postal code is required
+                                                        </div>
+                                                        <div *ngIf="zipCode.errors.minlength">
+                                                            ZIP/Postal code must be at least 2 characters long
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div>
+                                        <p class="card-text text-muted mt-4 space">Billing method</p>
+                                        <hr class="my-0">
+                                    </div>
+
+                                    <div>
+                                        <p class="card-text text-muted mt-4 space">Payment method</p>
+                                        <hr class="my-0">
+                                    </div>
+                                    <div>
+                                        <form [formGroup]="checkoutFormGroup">
+
+                                            <div class="form-group">
+                                                <div formGroupName="paymentMethod" class="form-group">
+                                                    <label class="small text-muted mb-1">Card number</label>
+                                                    <input formControlName="cardNumber" type="text" class="form-control"
+                                                        placeholder="Card number">
+
+                                                    <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div *ngIf="cardNumber.errors.required">
+                                                            Card number is required
+                                                        </div>
+                                                        <div *ngIf="firstName.errors.pattern">
+                                                            Card number must be in a valid format
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row no-gutters">
+                                                <div class="col-sm-6 pr-sm-2">
+                                                    <div formGroupName="paymentMethod" class="form-group">
+                                                        <label class="small text-muted mb-1">Card holder</label>
+                                                        <input formControlName="cardHolder" type="text"
+                                                            class="form-control" placeholder="Card holder">
+
+                                                        <div *ngIf="cardHolder.invalid && (cardHolder.dirty || cardHolder.touched)"
+                                                            class="alert alert-dark mt-1">
+                                                            <div
+                                                                *ngIf="cardHolder.errors.required || cardHolder.errors.notOnlyWhiteSpace">
+                                                                Card holder is required
+                                                            </div>
+                                                            <div *ngIf="cardHolder.errors.minlength">
+                                                                Card holder must be at least 2 characters long
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div formGroupName="paymentMethod" class="form-group">
+                                                        <label class="small text-muted mb-1">Expiration Date</label>
+                                                        <input formControlName="expirationDate" type="text"
+                                                            class="form-control" placeholder="Expiration Date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div formGroupName="paymentMethod" class="form-group">
+                                                        <label class="small text-muted mb-1">Credit card type</label>
+                                                        <select formControlName="cardType" class="form-control">
+                                                            <option>Visa</option>
+                                                            <option>Mastercard</option>
+                                                        </select>
+
+                                                        <div *ngIf="cardType.invalid && (cardType.dirty || cardType.touched)"
+                                                            class="alert alert-dark mt-1">
+                                                            <div
+                                                                *ngIf="cardType.errors.required || cardType.errors.notOnlyWhiteSpace">
+                                                                Credit card type is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div>
+                                        <p class="card-text text-muted mt-4 space">Additional Infomations</p>
+                                        <hr class="my-0">
+                                    </div>
+                                    <form [formGroup]="checkoutFormGroup">
+                                        <div class="form-group">
+                                            <div formGroupName="additionalInfo" class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">Order notes</label>
+                                                <textarea formControlName="notes" type="text" class="form-control"
+                                                    rows="5"
+                                                    placeholder="Need a specific delivery day? Sending a gift? Let's say..."></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                    <div class="row mb-md-5">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-lg btn-block ">Complete order</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cart details -->
+                        <div class="col-md-5">
+                            <app-cart-details></app-cart-details>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
