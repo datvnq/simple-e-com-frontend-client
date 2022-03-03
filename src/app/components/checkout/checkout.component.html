@@ -1,12 +1,14 @@
-<div class=" container-fluid my-5 ">
-    <div class="row justify-content-center ">
-        <div class="col-xl-10">
-            <div class="card shadow-lg ">
+<div class=" container-fluid my-4">
+    <div class="row justify-content-center">
+        <div class="col-11">
+            <div class="card shadow-lg">
                 <div class="row p-2 mt-3 justify-content-between mx-sm-2">
 
-                    <div class="row mx-auto justify-content-center">
-                        <div class="col-12 mt-3 ">
-                            <a routerLink="/products">Back to homepage</a>
+                    <div class="row mx-auto justify-content-center mb-4">
+                        <div class="col-12 mt-3">
+                            <a routerLink="/products">
+                                Back to homepage
+                            </a>
                         </div>
                     </div>
 
@@ -16,16 +18,16 @@
                             <div class="card border-0">
                                 <div class="card-header pb-0">
                                     <h2 class="card-title space">Checkout</h2>
-                                    <p class="card-text text-muted mt-4 space">Billing info</p>
+                                    <h5 class="card-text pt-3">Billing info</h5>
                                     <hr class="my-0">
                                 </div>
                                 <div class="card-body">
-                                    <form [formGroup]="checkoutFormGroup">
+                                    <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
 
-                                        <div class="row no-gutters">
+                                        <div class="row no-gutters mb-3">
                                             <div class="col-sm-6 pr-sm-2">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">First name</label>
+                                                    <label class="small mb-2">First name</label>
                                                     <input formControlName="firstName" type="text" class="form-control"
                                                         placeholder="First name">
 
@@ -44,7 +46,7 @@
 
                                             <div class="col-sm-6">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">Last name</label>
+                                                    <label class="small mb-2">Last name</label>
                                                     <input formControlName="lastName" type="text" class="form-control"
                                                         placeholder="Last name">
 
@@ -62,10 +64,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="row no-gutters">
+                                        <div class="row no-gutters mb-3">
                                             <div class="col-sm-6 pr-sm-2">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">Email</label>
+                                                    <label class="small mb-2">Email</label>
                                                     <input formControlName="email" type="text" class="form-control"
                                                         placeholder="Email">
 
@@ -83,7 +85,7 @@
 
                                             <div class="col-sm-6">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">Phone number</label>
+                                                    <label class="small mb-2">Phone number</label>
                                                     <input formControlName="phoneNumber" type="text"
                                                         class="form-control" placeholder="Phone number">
 
@@ -100,10 +102,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="row no-gutters">
+                                        <div class="row no-gutters mb-3">
                                             <div class="col-sm-6 pr-sm-2">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">Address</label>
+                                                    <label class="small mb-2">Address</label>
                                                     <input formControlName="address" type="text" class="form-control"
                                                         placeholder="Address">
 
@@ -122,7 +124,7 @@
 
                                             <div class="col-sm-6">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">Town / City</label>
+                                                    <label class="small mb-2">Town / City</label>
                                                     <input formControlName="city" type="text" class="form-control"
                                                         placeholder="Town or City">
 
@@ -132,7 +134,7 @@
                                                             *ngIf="city.errors.required || city.errors.notOnlyWhiteSpace">
                                                             Town / City is required
                                                         </div>
-                                                        <div *ngIf="firstName.errors.minlength">
+                                                        <div *ngIf="city.errors.minlength">
                                                             Town / City must be at least 2 characters long
                                                         </div>
                                                     </div>
@@ -140,18 +142,21 @@
                                             </div>
                                         </div>
 
-                                        <div class="row no-gutters">
+                                        <div class="row no-gutters mb-3">
                                             <div class="col-sm-6 pr-sm-2">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">State / Country</label>
-                                                    <input formControlName="country" type="text" class="form-control"
-                                                        placeholder="Country">
+                                                    <label class="small mb-2">Country</label>
+                                                    <select formControlName="country" class="form-control"
+                                                        (change)="getStates()">
+                                                        <option *ngFor="let country of countries" [ngValue]="country">
+                                                            {{ country.name }}
+                                                        </option>
+                                                    </select>
 
                                                     <div *ngIf="country.invalid && (country.dirty || country.touched)"
                                                         class="alert alert-dark mt-1">
-                                                        <div
-                                                            *ngIf="country.errors.required || country.errors.notOnlyWhiteSpace">
-                                                            State / Country is required
+                                                        <div *ngIf="country.errors.required">
+                                                            Country is required
                                                         </div>
                                                     </div>
                                                 </div>
@@ -159,7 +164,27 @@
 
                                             <div class="col-sm-6">
                                                 <div formGroupName="billingInfo" class="form-group">
-                                                    <label class="small text-muted mb-1">ZIP/Postal code</label>
+                                                    <label class="small mb-2">State</label>
+                                                    <select formControlName="state" class="form-control">
+                                                        <option *ngFor="let state of states">
+                                                            {{ state.name }}
+                                                        </option>
+                                                    </select>
+
+                                                    <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                                                        class="alert alert-dark mt-1">
+                                                        <div *ngIf="state.errors.required">
+                                                            State is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row no-gutters mb-3">
+                                            <div class="col-sm-6">
+                                                <div formGroupName="billingInfo" class="form-group">
+                                                    <label class="small mb-2">ZIP/Postal code</label>
                                                     <input formControlName="zipCode" type="text" class="form-control"
                                                         placeholder="Postal code or ZIP">
 
@@ -176,23 +201,37 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
 
-                                    <div>
-                                        <p class="card-text text-muted mt-4 space">Billing method</p>
-                                        <hr class="my-0">
-                                    </div>
 
-                                    <div>
-                                        <p class="card-text text-muted mt-4 space">Payment method</p>
-                                        <hr class="my-0">
-                                    </div>
-                                    <div>
-                                        <form [formGroup]="checkoutFormGroup">
+                                        <div>
+                                            <h5 class="card-text mt-4">Billing method</h5>
+                                            <hr class="my-0">
+                                        </div>
+                                        <div>
+                                            <div class="form-group mt-3">
+                                                <div class="form-group">
+                                                    <label class="small mb-2">Shipping service</label>
 
-                                            <div class="form-group">
+                                                    <div class="form-control">
+                                                        <div *ngFor="let item of shippingMethod">
+                                                            <input type="radio" name="shipping"
+                                                                value="{{ item.method }}"
+                                                                (change)="handleShippingMethod(item)">
+                                                            <label>{{ item.method }}</label><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h5 class="card-text mt-4">Payment method</h5>
+                                            <hr class="my-0">
+                                        </div>
+                                        <div>
+                                            <div class="form-group mb-3 mt-3">
                                                 <div formGroupName="paymentMethod" class="form-group">
-                                                    <label class="small text-muted mb-1">Card number</label>
+                                                    <label class="small mb-2">Card number</label>
                                                     <input formControlName="cardNumber" type="text" class="form-control"
                                                         placeholder="Card number">
 
@@ -201,7 +240,7 @@
                                                         <div *ngIf="cardNumber.errors.required">
                                                             Card number is required
                                                         </div>
-                                                        <div *ngIf="firstName.errors.pattern">
+                                                        <div *ngIf="cardNumber.errors.pattern">
                                                             Card number must be in a valid format
                                                         </div>
                                                     </div>
@@ -209,9 +248,57 @@
                                             </div>
 
                                             <div class="row no-gutters">
-                                                <div class="col-sm-6 pr-sm-2">
+                                                <div class="col-sm-6 pr-sm-2 mb-3">
                                                     <div formGroupName="paymentMethod" class="form-group">
-                                                        <label class="small text-muted mb-1">Card holder</label>
+                                                        <label class="small mb-2">Credit card type</label>
+                                                        <select formControlName="cardType" class="form-control">
+                                                            <option>Visa</option>
+                                                            <option>Mastercard</option>
+                                                        </select>
+
+                                                        <div *ngIf="cardType.invalid && (cardType.dirty || cardType.touched)"
+                                                            class="alert alert-dark mt-1">
+                                                            <div
+                                                                *ngIf="cardType.errors.required || cardType.errors.notOnlyWhiteSpace">
+                                                                Credit card type is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6 mb-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div formGroupName="paymentMethod" class="form-group">
+                                                                <label class="small mb-2">Expiration
+                                                                    month</label>
+                                                                <select formControlName="expirationMonth"
+                                                                    class="form-control">
+                                                                    <option *ngFor="let month of creditCardMonths">
+                                                                        {{ month }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div formGroupName="paymentMethod" class="form-group">
+                                                                <label class="small mb-2">Expiration
+                                                                    year</label>
+                                                                <select formControlName="expirationYear"
+                                                                    class="form-control"
+                                                                    (change)="handleMonthsAndYears()">
+                                                                    <option *ngFor="let year of creditCardYears">
+                                                                        {{ year }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div formGroupName="paymentMethod" class="form-group">
+                                                        <label class="small mb-2">Card holder</label>
                                                         <input formControlName="cardHolder" type="text"
                                                             class="form-control" placeholder="Card holder">
 
@@ -227,65 +314,88 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-sm-6">
-                                                    <div formGroupName="paymentMethod" class="form-group">
-                                                        <label class="small text-muted mb-1">Expiration Date</label>
-                                                        <input formControlName="expirationDate" type="text"
-                                                            class="form-control" placeholder="Expiration Date">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div formGroupName="paymentMethod" class="form-group">
-                                                        <label class="small text-muted mb-1">Credit card type</label>
-                                                        <select formControlName="cardType" class="form-control">
-                                                            <option>Visa</option>
-                                                            <option>Mastercard</option>
-                                                        </select>
-
-                                                        <div *ngIf="cardType.invalid && (cardType.dirty || cardType.touched)"
-                                                            class="alert alert-dark mt-1">
-                                                            <div
-                                                                *ngIf="cardType.errors.required || cardType.errors.notOnlyWhiteSpace">
-                                                                Credit card type is required
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                        </div>
 
-                                    <div>
-                                        <p class="card-text text-muted mt-4 space">Additional Infomations</p>
-                                        <hr class="my-0">
-                                    </div>
-                                    <form [formGroup]="checkoutFormGroup">
-                                        <div class="form-group">
+                                        <div>
+                                            <h5 class="card-text mt-4">Additional Infomations</h5>
+                                            <hr class="my-0">
+                                        </div>
+
+                                        <div class="form-group mt-3">
                                             <div formGroupName="additionalInfo" class="form-group">
-                                                <label for="NAME" class="small text-muted mb-1">Order notes</label>
+                                                <label for="NAME" class="small mb-2">Order notes</label>
                                                 <textarea formControlName="notes" type="text" class="form-control"
                                                     rows="5"
                                                     placeholder="Need a specific delivery day? Sending a gift? Let's say..."></textarea>
                                             </div>
                                         </div>
-                                    </form>
 
-
-                                    <div class="row mb-md-5">
-                                        <div class="col">
-                                            <button type="button" class="btn btn-lg btn-block ">Complete order</button>
+                                        <div class="row mb-md-5">
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-dark mt-3"
+                                                    [disabled]="checkoutFormGroup.invalid">Complete order</button>
+                                            </div>
                                         </div>
-                                    </div>
 
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Cart details -->
                         <div class="col-md-5">
-                            <app-cart-details></app-cart-details>
+
+                            <div class="card border-0">
+                                <div class="card-header card-2">
+                                    <h5 class="card-text pt-3">Order Summary</h5>
+                                    <hr class="my-2">
+                                </div>
+
+                                <div class="card-body pt-0">
+                                    <app-cart-details></app-cart-details>
+
+                                    <hr class="my-2">
+                                    <div class="row ">
+                                        <div class="col">
+                                            <div class="row justify-content-between">
+                                                <div class="col-4">
+                                                    <p class="mb-1"><b>Total quantity</b></p>
+                                                </div>
+                                                <div class="flex-sm-col col-auto">
+                                                    <p class="mb-1"><b>{{ totalQuantity }}</b></p>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col-4">
+                                                    <p class="mb-1"><b>Subtotal</b></p>
+                                                </div>
+                                                <div class="flex-sm-col col-auto">
+                                                    <p class="mb-1"><b>{{ totalPrice | currency: 'USD' }}</b></p>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col">
+                                                    <p class="mb-1"><b>Shipping</b></p>
+                                                </div>
+                                                <div class="flex-sm-col col-auto">
+                                                    <p class="mb-1"><b>{{ shippingPrice | currency: 'USD' }}</b></p>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col-4">
+                                                    <p><b>Total Order</b></p>
+                                                </div>
+                                                <div class="flex-sm-col col-auto">
+                                                    <p class="mb-1"><b>{{ totalPrice + shippingPrice | currency: 'USD'
+                                                            }}</b></p>
+                                                </div>
+                                            </div>
+                                            <hr class="my-0">
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
 
                     </div>
@@ -293,3 +403,4 @@
             </div>
         </div>
     </div>
+</div>

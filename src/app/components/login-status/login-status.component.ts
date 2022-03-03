@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login-status',
@@ -9,7 +11,7 @@ export class LoginStatusComponent implements OnInit {
 
   username: string;
 
-  constructor() { }
+  constructor(private cartService: CartService, private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,15 @@ export class LoginStatusComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    this.resetCart();
+    this.route.navigate(['/products']);
+
+  }
+
+  resetCart() {
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
   }
 
 }

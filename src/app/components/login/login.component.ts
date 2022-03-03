@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,10 @@ export class LoginComponent implements OnInit {
 
   loginFormGroup: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private authService: AuthService, 
+    private router: Router, 
+    private formBuilder: FormBuilder, 
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -53,6 +57,14 @@ export class LoginComponent implements OnInit {
         this.loginSuccess = false;
       }
     );
+
+    this.resetCart();
+  }
+
+  resetCart() {
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
   }
 
 }

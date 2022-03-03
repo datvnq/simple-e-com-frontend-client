@@ -1,11 +1,18 @@
-<div class="login-status-header">
+<div>
 
-    <div *ngIf="loginStatus()" class="login-status-user-info">
-        Welcome back {{ username }}!
+    <div *ngIf="loginStatus()" class="login-status-user-info text-white">
+        <div class="row">
+            <div class="col mr-1 mt-2" style="text-align: center;">
+                Welcome back {{ username }}!
+            </div>
+            <div class="col">
+                <button (click)="logout()" class="btn btn-dark border border-light rouned">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
-    <button *ngIf="!loginStatus()" routerLink="/login" class="security-btn">Login</button>
-    
-    <button *ngIf="loginStatus()" (click)="logout()" class="security-btn">Logout</button>
+    <button *ngIf="!loginStatus()" routerLink="/login" class="btn btn-dark border border-light rouned">Login</button>
 
 </div>

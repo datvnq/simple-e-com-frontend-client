@@ -18,10 +18,19 @@ export class ProductService {
   }
 
   getProductById(productId: number): Observable<Product> {
-    return this.httpClient.get<Product>(`${this.baseURL}/api/products/${productId}`);
+    return this.httpClient.get<Product>(`${this.baseURL}/api/product/${productId}`);
+  }
+
+  getProductsByKeyword(keyword: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products/${keyword}`);
+  }
+
+  getProductsByCategoryId(categoryId: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/productCategory/${categoryId}`);
   }
 
   getAllProductCategories(): Observable<ProductCategory[]> {
-    return this.httpClient.get<ProductCategory[]>(`${this.baseURL}/api/product-categories`);
+    return this.httpClient.get<ProductCategory[]>(`${this.baseURL}/api/productCategories`);
   }
+
 }

@@ -1,24 +1,23 @@
 <nz-layout>
-    <nz-sider>
+    <nz-sider class="bg-white border-dark border-right rounded-right">
         <app-product-category></app-product-category>
     </nz-sider>
     <nz-content>
-        <div class="container-fluid">
+        <div class="container-fluid p-4">
             <div class="row">
 
-                <div *ngFor="let tempProduct of products" class="col-md-3">
-                    <div class="product-box">
-
+                <div *ngFor="let tempProduct of products | slice: (page-1) * pageSize : page * pageSize" class="col-md-3">
+                    <div class="card border border-dark mb-3">
                         <a routerLink="/products/{{ tempProduct.id }}">
-                            <img src="{{ tempProduct.imageUrl }}" class="img-responsive">
+                            <img src="{{ tempProduct.imageUrl }}" class="card-img-top img-responsive"/>
                         </a>
-
-                        <a routerLink="/products/{{ tempProduct.id }}">
-                            <h1>{{ tempProduct.name }}</h1>
-                        </a>
-
-                        <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
-                        <button (click)="addToCart(tempProduct)" class="btn btn-dark btn-sm">Add to cart</button>
+                        <div class="card-body border-top border-dark">
+                            <a routerLink="/products/{{ tempProduct.id }}">
+                                <h5 class="card-title">{{ tempProduct.name }}</h5>
+                            </a>
+                            <p class="card-text">{{ tempProduct.unitPrice | currency:'USD' }}</p>
+                            <button (click)="addToCart(tempProduct)" class="btn btn-dark btn-sm">Add to cart</button>
+                        </div>
                     </div>
                 </div>
 
@@ -28,5 +27,8 @@
 
             </div>
         </div>
+
+        <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="products?.length"></ngb-pagination>
+    
     </nz-content>
 </nz-layout>

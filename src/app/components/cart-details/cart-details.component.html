@@ -1,88 +1,49 @@
-<div class="card border-0 ">
-    <div class="card-header card-2">
-        <p class="card-text text-muted mt-md-4 mb-2 space">Order Summary</p>
-        <hr class="my-2">
-    </div>
-    
-    <div class="card-body pt-0">
+<div *ngIf="cartItems.length == 0" class="alert alert-dark col-md-12">
+    Your shopping cart is empty.
+</div>
 
-        <div *ngIf="cartItems.length > 0">
-
-            <div class="row justify-content-between" *ngFor="let tempCartItem of cartItems">
-                <div class="col-auto col-md-7">
-                    <div class="media flex-column flex-sm-row"> <img class="img-fluid" src="{{ tempCartItem.imageUrl }}"
-                            width="62" height="62">
-                        <div class="media-body my-auto">
-                            <div class="row ">
-                                <div class="col-auto">
-                                    <p class="mb-0"><b>{{ tempCartItem.name }}</b></p>
-                                </div>
-                                <div>
-                                    <button (click)="remove(tempCartItem)"
-                                        class="btn btn-primary btn-sm mt-2">Remove</button>
-                                </div>
-                            </div>
-                        </div>
+<div *ngIf="cartItems.length > 0">
+    <div *ngFor="let tempCartItem of cartItems" class="mb-3">
+        <div class="row mt-2 mb-3">
+            <div class="col-sm">
+                <div class="">
+                    <div class="">
+                        <p><b>{{ tempCartItem.name }}</b></p>
                     </div>
                 </div>
-                <div class="pl-0 flex-sm-col col-auto my-auto">
-                    <div class="row no-gutters">
-                        <div class="row">
-                            <button (click)="incrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
+                <div>
+                    <img class="img-fluid" src="{{ tempCartItem.imageUrl }}" width="80" height="80">
+                </div>
+                <button (click)="remove(tempCartItem)" class="btn btn-dark mt-2">
+                    Remove
+                </button>
+            </div>
+        
+            <div class="col-sm">
+                <div class="row mt-5">
+                    <div class="col-sm">
+                        <button (click)="incrementQuantity(tempCartItem)" class="btn btn-dark">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
 
-                        <div class="boxed-1 col ml-4 mr-2">{{ tempCartItem.quantity }}</div>
+                    <div class="col-sm mt-2" style="text-align: center;">
+                        {{ tempCartItem.quantity }}
+                    </div>
 
-                        <div class="row">
-                            <button (click)="decrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
+                    <div class="col-sm">
+                        <button (click)="decrementQuantity(tempCartItem)" class="btn btn-dark">
+                            <i class="fas fa-minus"></i>
+                        </button>
                     </div>
                 </div>
-                <div class=" pl-0 flex-sm-col col-auto my-auto ">
-                    <p><b>{{ tempCartItem.unitPrice *tempCartItem.quantity | currency: 'USD' }}</b></p>
-                </div>
-
             </div>
 
-            <hr class="my-2">
-            <div class="row ">
-                <div class="col">
-                    <div class="row justify-content-between">
-                        <div class="col-4">
-                            <p class="mb-1"><b>Subtotal</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1"><b>{{ totalPrice }}</b></p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="col">
-                            <p class="mb-1"><b>Shipping</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1"><b>FREE</b></p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="col-4">
-                            <p><b>Total Order</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1"><b>{{ totalPrice }}</b></p>
-                        </div>
-                    </div>
-                    <hr class="my-0">
-                </div>
+            <div class="col-sm mt-5" style="text-align: center;">
+                <p class="mt-2"><b>{{ tempCartItem.unitPrice *tempCartItem.quantity | currency: 'USD' }}</b></p>
             </div>
-        </div>
 
-        <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12">
-            Your shopping cart is empty.
         </div>
-
     </div>
 </div>
+

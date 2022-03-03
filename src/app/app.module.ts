@@ -24,6 +24,10 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CartService } from './services/cart.service';
+import { CheckoutService } from './services/checkout.service';
+import { SearchComponent } from './components/search/search.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +55,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     NzDividerModule,
     NzNotificationModule,
     ReactiveFormsModule,
-    NzCardModule
+    NzCardModule,
+    NgbPaginationModule
   ],
-  providers: [AuthService, ProductService],
+  providers: [AuthService, ProductService, CartService, CheckoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
