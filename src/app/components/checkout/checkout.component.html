@@ -71,12 +71,12 @@
                                                     <input formControlName="email" type="text" class="form-control"
                                                         placeholder="Email">
 
-                                                    <div *ngIf="firstName.invalid && (email.dirty || email.touched)"
+                                                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
                                                         class="alert alert-dark mt-1">
                                                         <div *ngIf="email.errors.required">
                                                             Email is required
                                                         </div>
-                                                        <div *ngIf="email.errors.pattern">
+                                                        <div *ngIf="email.errors.email">
                                                             Email must be a valid email address format
                                                         </div>
                                                     </div>
@@ -324,7 +324,7 @@
 
                                         <div class="form-group mt-3">
                                             <div formGroupName="additionalInfo" class="form-group">
-                                                <label for="NAME" class="small mb-2">Order notes</label>
+                                                <label class="small mb-2">Order notes</label>
                                                 <textarea formControlName="notes" type="text" class="form-control"
                                                     rows="5"
                                                     placeholder="Need a specific delivery day? Sending a gift? Let's say..."></textarea>
@@ -394,7 +394,7 @@
                                             <hr class="my-0">
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 

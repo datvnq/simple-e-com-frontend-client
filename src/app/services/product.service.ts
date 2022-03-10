@@ -13,20 +13,28 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products`);
+  getAllProducts(page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `page=${page}&size=${size}`);
+  }
+
+  getProductsByKeyword(keyword: string, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `keyword=${keyword}` + `&page=${page}&size=${size}`);
+  }
+
+  getProductsByCategoryId(categoryId: number, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `categoryId=${categoryId}` + `&page=${page}&size=${size}`);
+  }
+
+  getProductsByKeywordAndCategoryId(categoryId: number, keyword: string, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products?` + `categoryId=${categoryId}` + `&keyword=${keyword}` + `&page=${page}&size=${size}`);
   }
 
   getProductById(productId: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.baseURL}/api/product/${productId}`);
   }
 
-  getProductsByKeyword(keyword: string): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/products/${keyword}`);
-  }
-
-  getProductsByCategoryId(categoryId: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.baseURL}/api/productCategory/${categoryId}`);
+  getRelatedProducts(categoryId: number, productId: number, page: number, size: number): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseURL}/api/relatedProducts/${categoryId}/${productId}?` + `&page=${page}&size=${size}`);
   }
 
   getAllProductCategories(): Observable<ProductCategory[]> {

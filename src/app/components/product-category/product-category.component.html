@@ -4,7 +4,7 @@
         <ul class="list-unstyled navbar-list">
             <li *ngFor="let tempProductCategory of productCategories">
 
-                <a routerLink="/category/{{ tempProductCategory.id }}">
+                <a routerLink="/products" [queryParams]="{ categoryId: tempProductCategory.id }">
                     <span class="d-block p-2 bg-dark text-white border border-dark rounded mt-2 mb-2">{{
                         tempProductCategory.categoryName }}</span>
                 </a>

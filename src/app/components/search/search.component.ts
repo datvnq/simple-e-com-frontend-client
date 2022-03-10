@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -8,13 +8,23 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentCategoryId: number;
+
+  constructor(private router: Router, private route: ActivatedRoute) { }
+  
 
   ngOnInit(): void {
   }
 
   handleKeyword(keyword: string) {
-    this.router.navigateByUrl(`/search/${keyword}`);
+    const hasCategoryId: boolean = this.route.snapshot.queryParamMap.has('categoryId');
+    if (hasCategoryId) {
+      this.currentCategoryId = +this.route.snapshot.queryParamMap.get('categoryId');
+      this.router.navigate(['/products'], { queryParams: {categoryId: this.currentCategoryId, keyword: keyword} });
+    }
+    else {
+      this.router.navigate(['/products'], { queryParams: {keyword: keyword} });
+    }
   }
 
 }

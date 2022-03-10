@@ -26,17 +26,17 @@
                 </div>
 
                 <div class="container-fluid p-4">
-                    <div class="row">
+                    <div class="row" *ngIf="relatedProducts?.length > 0">
         
-                        <div *ngFor="let tempProduct of relatedProducts | slice: (page-1) * pageSize : page * pageSize" class="col-md-3">
+                        <div *ngFor="let tempProduct of relatedProducts" class="col-md-3">
                             <div class="card border border-dark mb-3 rounded">
-                                <a routerLink="/products/{{ tempProduct.id }}">
+                                <a routerLink="/product/{{ tempProduct.id }}">
                                     <img src="{{ tempProduct.imageUrl }}" class="card-img-top img-responsive"/>
                                 </a>
                                 <div class="card-body border-top border-dark">
                                     <div class="row">
                                         <div class="col-md-9 mt-1" style="align-self: center;">
-                                            <a routerLink="/products/{{ tempProduct.id }}">
+                                            <a routerLink="/product/{{ tempProduct.id }}">
                                                 <h5 class="card-title">{{ tempProduct.name }}</h5>
                                             </a>
                                         </div>
@@ -47,14 +47,25 @@
                                 </div>
                             </div>
                         </div>
-        
-                        <div *ngIf="relatedProducts?.length == 0" class="alert alert-dark">
-                            Related products not found.
+
+                        <div class="d-flex justify-content-end mt-3">
+                            <div class="pagination">
+                                <a class="nav-link" routerLink="/product/{{ product.id }}" [queryParams]="{ page: 1 }" (click)="selectPage()">&laquo;</a>
+                            </div>
+                            <div class="pagination" *ngFor="let p of totalPages; let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
+                                <a class="nav-link" routerLink="/product/{{ product.id }}" [queryParams]="{ page: i+1 }">{{i+1}}</a>
+                            </div>
+                            <div class="pagination">
+                                <a class="nav-link" routerLink="/product/{{ product.id }}" [queryParams]="{ page: totalPages?.length }" (click)="selectPage()">&raquo;</a>
+                            </div>
                         </div>
         
                     </div>
-                    
-                    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="relatedProducts?.length"></ngb-pagination>
+
+                    <div *ngIf="relatedProducts?.length == 0" class="alert alert-dark">
+                        Related products not found.
+                    </div>
+
                 </div>
             </div>
         </div>

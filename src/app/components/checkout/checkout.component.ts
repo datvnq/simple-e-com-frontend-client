@@ -38,9 +38,9 @@ export class CheckoutComponent implements OnInit {
 
   shippingPrice: number = 0;
 
-  constructor(private formBuilder: FormBuilder, 
-    private checkoutService: CheckoutService, 
-    private cartService: CartService, 
+  constructor(private formBuilder: FormBuilder,
+    private checkoutService: CheckoutService,
+    private cartService: CartService,
     private router: Router,
     private notification: NzNotificationService) { }
 
@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
       billingInfo: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), CustomValidators.notOnlyWhiteSpace()]),
         lastName: new FormControl('', [Validators.required, Validators.minLength(2), CustomValidators.notOnlyWhiteSpace()]),
-        email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
+        email: new FormControl('', [Validators.required, Validators.email]),
         phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0]{1}[0-9]{9}$')]),
         address: new FormControl('', [Validators.required, Validators.minLength(2), CustomValidators.notOnlyWhiteSpace()]),
         city: new FormControl('', [Validators.required, Validators.minLength(2), CustomValidators.notOnlyWhiteSpace()]),
@@ -89,7 +89,7 @@ export class CheckoutComponent implements OnInit {
     );
 
     this.cartTotal();
-    
+
   }
 
   cartTotal() {
@@ -180,21 +180,6 @@ export class CheckoutComponent implements OnInit {
     let orderItems: OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
     purchase.orderItems = orderItems;
 
-    /*
-    console.log(purchase.customer.firstName);
-    console.log(purchase.customer.lastName);
-    console.log(purchase.customer.email);
-    console.log(purchase.customer.phoneNumber);
-    console.log(purchase.order.totalPrice);
-    console.log(purchase.order.totalQuantity);
-    console.log(purchase.order.address);
-    console.log(purchase.order.city);
-    console.log(purchase.order.country);
-    console.log(purchase.order.state);
-    console.log(purchase.order.zipCode);
-    console.log(purchase.order.note);
-    */
-    
     this.checkoutService.placeOrder(purchase).subscribe(
       {
         next: response => {

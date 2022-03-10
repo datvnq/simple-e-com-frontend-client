@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { flatMap } from 'rxjs';
 import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
 import { CartService } from 'src/app/services/cart.service';
@@ -14,18 +13,22 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductDetailsComponent implements OnInit {
 
   page = 1;
-  pageSize = 4;
+  size = 4;
 
   product: Product = new Product();
   categoryId: number;
-  allProducts: Product[] = [];
-  relatedProducts: Product[] = [];
+  relatedProducts: Product[];
+  totalPages: number[];
+
+  selectedPage: any;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
-      this.handleProductDetails();
+      this.route.queryParamMap.subscribe(() => {
+        this.handleProductDetails();
+      });
     });
   }
 
@@ -35,14 +38,16 @@ export class ProductDetailsComponent implements OnInit {
       data1 => {
         this.product = data1;
         this.categoryId = data1.categoryId;
-        this.productService.getProductsByCategoryId(this.categoryId).subscribe(
+
+        this.page = +this.route.snapshot.queryParamMap.get('page');
+        if (this.page < 1) {
+          this.page = 1;
+        }
+
+        this.productService.getRelatedProducts(this.categoryId, +this.product.id, this.page - 1, this.size).subscribe(
           data2 => {
-            this.allProducts = data2;
-            for (let tempProduct of this.allProducts) {
-              if (tempProduct.id !== this.product.id) {
-                this.relatedProducts.push(tempProduct);
-              }
-            }
+            this.relatedProducts = data2['productDtoList'];
+            this.totalPages = new Array(data2['totalPages']);
           }
         );
       }
@@ -52,6 +57,31 @@ export class ProductDetailsComponent implements OnInit {
   addToCart() {
     const cartItem = new CartItem(this.product);
     this.cartService.addToCart(cartItem);
+  }
+
+  select(item) {
+    this.selectedPage = item; 
+  };
+
+  isActive(item) {
+    this.route.queryParamMap.subscribe(
+      () => {
+        const querryParamPage: number = +this.route.snapshot.queryParamMap.get('page');
+        this.selectedPage = querryParamPage - 1;
+      }
+    );
+    return this.selectedPage == item;
+  };
+
+  selectPage() {
+    this.route.queryParamMap.subscribe(
+      () => {
+        const querryParamPage: number = +this.route.snapshot.queryParamMap.get('page');
+        this.selectedPage = querryParamPage - 1;
+        this.select(this.selectedPage);
+        this.isActive(this.selectedPage);
+      }
+    );
   }
 
 }
