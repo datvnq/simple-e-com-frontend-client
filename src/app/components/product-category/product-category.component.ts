@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductCategory } from 'src/app/common/product-category';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,7 +12,9 @@ export class ProductCategoryComponent implements OnInit {
 
   productCategories: ProductCategory[];
 
-  constructor(private productService: ProductService) { }
+  selectedCategory: any;
+
+  constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productService.getAllProductCategories().subscribe(
@@ -20,5 +23,19 @@ export class ProductCategoryComponent implements OnInit {
       }
     );
   }
+
+  select(item) {
+    this.selectedCategory = item; 
+  };
+
+  isActive(item) {
+    this.route.queryParamMap.subscribe(
+      () => {
+        const querryParamCategoryId: number = +this.route.snapshot.queryParamMap.get('categoryId');
+        this.selectedCategory = querryParamCategoryId - 1;
+      }
+    );
+    return this.selectedCategory == item;
+  };
 
 }

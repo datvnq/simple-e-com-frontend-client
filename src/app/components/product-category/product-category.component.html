@@ -2,10 +2,10 @@
     <div class="container">
         <h4 class="mt-2 pl-5">Categories</h4>
         <ul class="list-unstyled navbar-list">
-            <li *ngFor="let tempProductCategory of productCategories">
+            <li class="category" *ngFor="let tempProductCategory of productCategories, let i = index" (click)="select(i)" [ngClass]="{'active': isActive(i)}">
 
                 <a routerLink="/products" [queryParams]="{ categoryId: tempProductCategory.id }">
-                    <span class="d-block p-2 bg-dark text-white border border-dark rounded mt-2 mb-2">{{
+                    <span class="d-block p-2 border border-dark rounded mt-2 mb-2">{{
                         tempProductCategory.categoryName }}</span>
                 </a>
 

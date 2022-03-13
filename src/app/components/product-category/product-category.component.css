@@ -1,0 +1,19 @@
+.active {
+    background-color: rgb(78, 75, 75) !important;
+    border-radius: 5px;
+  }
+    
+.category span:hover:not(.active) {
+    background-color: rgb(78, 75, 75);
+    border-radius: 5px;
+}
+
+.category {
+    background-color: #292b2c;
+    color: white;
+    border-radius: 5px;
+}
+
+.category a {
+    color: white;
+}
