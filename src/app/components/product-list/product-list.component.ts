@@ -56,7 +56,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getProductsByKeywordAndCategoryId(this.currentCategoryId, this.keyword, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -69,7 +69,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getProductsByKeyword(this.keyword, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -89,7 +89,7 @@ export class ProductListComponent implements OnInit {
 
       this.productService.getProductsByCategoryId(this.currentCategoryId, this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );
@@ -101,7 +101,7 @@ export class ProductListComponent implements OnInit {
       }
       this.productService.getAllProducts(this.page - 1, this.size).subscribe(
         data => {
-          this.products = data['productDtoList'];
+          this.products = data['content'];
           this.totalPages = new Array(data['totalPages']);
         }
       );

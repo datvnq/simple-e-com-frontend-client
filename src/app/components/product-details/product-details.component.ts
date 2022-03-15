@@ -46,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
 
         this.productService.getRelatedProducts(this.categoryId, +this.product.id, this.page - 1, this.size).subscribe(
           data2 => {
-            this.relatedProducts = data2['productDtoList'];
+            this.relatedProducts = data2['content'];
             this.totalPages = new Array(data2['totalPages']);
           }
         );
