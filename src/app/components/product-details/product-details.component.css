@@ -1,10 +1,12 @@
-body{
+body {
     background-color: #edf1f5;
-    margin-top:20px;
+    margin-top: 20px;
 }
+
 .card {
     margin-bottom: 30px;
 }
+
 .card {
     position: relative;
     display: flex;
@@ -16,37 +18,64 @@ body{
     border: 0 solid transparent;
     border-radius: 0;
 }
+
 .card .card-subtitle {
     font-weight: 300;
     margin-bottom: 10px;
     color: #8898aa;
 }
+
+.card-subtitle {
+    font-family: Open Sans;
+}
+
 .table-product.table-striped tbody tr:nth-of-type(odd) {
     background-color: #f3f8fa
 }
-.table-product td{
+
+.table-product td {
     border-top: 0px solid #dee2e6;
     color: #728299;
+}
+
+.add-to-cart-btn {
+    background-color: #46760A;
+    color: white;
+    font-weight: bold;
+    font-family: Poppins;
+}
+
+.product-img {
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 25px;
+    width: 250px;
 }
 
 .pagination {
     display: inline-block;
 }
-  
+
 .pagination a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
 }
-  
+
 .active {
-    background-color: #ddd;
-    border-radius: 5px;
-}
-  
-.pagination a:hover:not(.active) {
-    background-color: #ddd;
+    background-color: #FFF5EE;
     border-radius: 5px;
 }
 
+.pagination a:hover:not(.active) {
+    background-color: #FFF5EE;
+    border-radius: 5px;
+}
+
+.box-title {
+    font-family: Poppins;
+    font-weight: bold;
+}

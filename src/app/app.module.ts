@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -58,7 +58,7 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     NzCardModule,
     NgbPaginationModule
   ],
-  providers: [AuthService, ProductService, CartService, CheckoutService],
+  providers: [AuthService, ProductService, CartService, CheckoutService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

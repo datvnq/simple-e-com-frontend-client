@@ -3,15 +3,33 @@ nz-sider {
 }
 
 nz-content {
-  background: #fff;
+  background: white;
 }
 
 nz-layout {
   margin-bottom: 48px;
 }
 
+.add-to-cart-btn {
+  background-color: #46760A; 
+    color: white; 
+    font-weight: bold;
+    float: right;
+    font-family: Poppins;
+}
+
+.product-img {
+  border: 1px solid #C0C0C0;
+  border-radius: 5px;
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 250px;
+}
+
 .pagination {
   display: inline-block;
+  font-weight: Open Sans;
 }
   
 .pagination a {
@@ -22,13 +40,17 @@ nz-layout {
 }
   
 .active {
-  background-color: #ddd;
+  background-color: #FFF5EE;
   border-radius: 5px;
 }
   
 .pagination a:hover:not(.active) {
-  background-color: #ddd;
+  background-color: #FFF5EE;
   border-radius: 5px;
+}
+
+.card-body {
+  font-family: Poppins;
 }
 
   

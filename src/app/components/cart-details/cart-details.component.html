@@ -1,4 +1,4 @@
-<div *ngIf="cartItems.length == 0" class="alert alert-dark col-md-12">
+<div *ngIf="cartItems.length == 0" class="alert alert-dark col-md-12" style="font-family: Poppins">
     Your shopping cart is empty.
 </div>
 
@@ -7,14 +7,14 @@
         <div class="row mt-2 mb-3">
             <div class="col-sm">
                 <div class="">
-                    <div class="">
+                    <div class="text">
                         <p><b>{{ tempCartItem.name }}</b></p>
                     </div>
                 </div>
                 <div>
                     <img class="img-fluid" src="{{ tempCartItem.imageUrl }}" width="80" height="80">
                 </div>
-                <button (click)="remove(tempCartItem)" class="btn btn-dark mt-2">
+                <button (click)="remove(tempCartItem)" class="btn checkout-btn mt-2">
                     Remove
                 </button>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-sm">
                 <div class="row mt-5">
                     <div class="col-sm">
-                        <button (click)="incrementQuantity(tempCartItem)" class="btn btn-dark">
+                        <button (click)="incrementQuantity(tempCartItem)" class="btn checkout-btn">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="col-sm">
-                        <button (click)="decrementQuantity(tempCartItem)" class="btn btn-dark">
+                        <button (click)="decrementQuantity(tempCartItem)" class="btn checkout-btn">
                             <i class="fas fa-minus"></i>
                         </button>
                     </div>
@@ -40,10 +40,12 @@
             </div>
 
             <div class="col-sm mt-5" style="text-align: center;">
-                <p class="mt-2"><b>{{ tempCartItem.unitPrice *tempCartItem.quantity | currency: 'USD' }}</b></p>
+                <p class="mt-2 text"><b>{{ tempCartItem.unitPrice *tempCartItem.quantity | currency: 'USD' }}</b></p>
             </div>
 
         </div>
+        <hr class="my-0">
+        
     </div>
 </div>
 

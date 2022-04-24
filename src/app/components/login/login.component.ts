@@ -45,18 +45,19 @@ export class LoginComponent implements OnInit {
       this.loginFormGroup.markAllAsTouched();
     }
 
-    this.authService.login(this.username, this.password).subscribe(
-      response => {
+    this.authService.login(this.username, this.password).subscribe({
+      next: response => {
         this.invalidLogin = false;
         this.loginSuccess = true;
         localStorage.setItem('token', this.username);
         this.router.navigate(['/products']);
       },
-      () => {
+      error: () => {
         this.invalidLogin = true;
         this.loginSuccess = false;
+        alert("The username or password is incorrect");
       }
-    );
+    });
 
     this.resetCart();
   }

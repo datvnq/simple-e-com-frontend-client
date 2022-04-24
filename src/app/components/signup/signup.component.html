@@ -2,22 +2,25 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <div class="card-body p-5 text-center">
 
-                        <div class="mb-md-2 mt-md-2 pb-2">
+                            <div class="mb-md-2 mt-md-2 pb-2">
 
-                            <h2 class="fw-bold text-white-50 mb-2 text-uppercase">Sign up</h2>
+                                <h2 class="fw-bold mb-4 text-uppercase heading">Sign up</h2>
 
-                            <form [formGroup]="signUpFormGroup" (ngSubmit)="signUp()">
-                                <div formGroupName="signUp">
-                                    <div class="form-outline form-white mb-4">
-                                        <label class="form-label">Username</label>
-                                        <input formControlName="username" type="text" [(ngModel)]="user.username"
-                                            class="form-control form-control-lg">
+                                <form [formGroup]="signUpFormGroup" (ngSubmit)="signUp()">
+                                    <div formGroupName="signUp">
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label heading">Username</label>
+                                            <input formControlName="username" type="text" [(ngModel)]="user.username"
+                                                class="form-control form-control-lg text">
 
-                                            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-dark mt-1">
-                                                <div *ngIf="username.errors.required || username.errors.notOnlyWhiteSpace">
+                                            <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                                                class="alert mt-1">
+                                                <div
+                                                    *ngIf="username.errors.required || username.errors.notOnlyWhiteSpace">
                                                     Username is required
                                                 </div>
                                                 <div *ngIf="username.errors.minlength">
@@ -28,14 +31,15 @@
                                                 </div>
                                             </div>
 
-                                    </div>
+                                        </div>
 
-                                    <div class="form-outline form-white mb-4">
-                                        <label class="form-label">Email</label>
-                                        <input formControlName="email" type="text" [(ngModel)]="user.email"
-                                            class="form-control form-control-lg">
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label heading">Email</label>
+                                            <input formControlName="email" type="text" [(ngModel)]="user.email"
+                                                class="form-control form-control-lg text">
 
-                                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-dark mt-1">
+                                            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                                class="alert mt-1">
                                                 <div *ngIf="email.errors.required">
                                                     Email is required
                                                 </div>
@@ -44,34 +48,39 @@
                                                 </div>
                                             </div>
 
-                                    </div>
+                                        </div>
 
-                                    <div class="form-outline form-white mb-4">
-                                        <label class="form-label">Password</label>
-                                        <input formControlName="password" type="password" [(ngModel)]="user.password"
-                                            class="form-control form-control-lg">
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label heading">Password</label>
+                                            <input formControlName="password" type="password"
+                                                [(ngModel)]="user.password" class="form-control form-control-lg text">
 
-                                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-dark mt-1">
+                                            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                                class="alert mt-1">
                                                 <div *ngIf="password.errors.required">
                                                     Password is required
                                                 </div>
                                             </div>
 
+                                        </div>
+
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit"
+                                            [disabled]="signUpFormGroup.invalid">Sign Up</button>
                                     </div>
+                                </form>
 
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit" [disabled]="signUpFormGroup.invalid">Sign Up</button>
-                                </div>
-                            </form>
+                            </div>
+
+                            <div> 
+                                <p class="mb-0 text">Already have an account? <a routerLink="/login" class="fw-bold heading"
+                                        style="color: #6A983C;">Login</a></p>
+                            </div>
+                            <div>
+                                <h6 class="card-subtitle mt-3 text"><a routerLink="/products" style="color: #aaa;">Back to
+                                        homepage</a></h6>
+                            </div>
 
                         </div>
-
-                        <div>
-                            <p class="mb-0">Already have an account? <a routerLink="/login" class="text-white-50 fw-bold">Login</a></p>
-                        </div>
-                        <div>
-                            <p class="mb-0"><a routerLink="/products" class="text-white-50 fw-bold">Back to homepage</a></p>
-                        </div>
-
                     </div>
                 </div>
             </div>

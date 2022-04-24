@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <form class="d-flex input-group w-auto">
         <input class="form-control mr-sm-2" #keyword type="text" placeholder="Search for products ..."
-            (keyup.enter)="handleKeyword(keyword.value)" aria-label="Search">
-        <button class="btn btn-dark my-2 my-sm-0 border border-light rounded-right"
+            (keyup.enter)="handleKeyword(keyword.value)" aria-label="Search" style="font-family: Poppins;">
+        <button class="btn search-btn my-2 my-sm-0 border rounded-right"
             (click)="handleKeyword(keyword.value)" type="submit">
-            Search
+            <i class="fa fa-search" aria-hidden="true"></i>
         </button>
     </form>
 </div>

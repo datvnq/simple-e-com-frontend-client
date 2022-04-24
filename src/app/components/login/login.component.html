@@ -2,58 +2,63 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <div class="card-body p-5 text-center">
 
-                        <div class="mb-md-2 mt-md-2 pb-2">
+                            <div class="mb-md-2 mt-md-2 pb-2">
 
-                            <h2 class="fw-bold text-white-50 mb-2 text-uppercase">Login</h2>
-                            <p class="text-white-50 mb-2">Please enter your username and password!</p>
+                                <h2 class="fw-bold mb-4 text-uppercase heading">Login</h2>
+                                <p class="mb-2 text">Please enter your username and password!</p>
 
-                            <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
-                                <div formGroupName="login">
-                                    <div class="form-outline form-white mb-4">
-                                        <label class="form-label">Username</label>
-                                        <input formControlName="loginUsername" type="text"
-                                            class="form-control form-control-lg" [(ngModel)]="username" autofocus>
+                                <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+                                    <div formGroupName="login">
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label heading">Username</label>
+                                            <input formControlName="loginUsername" type="text"
+                                                class="form-control form-control-lg text" [(ngModel)]="username" autofocus>
 
-                                        <div *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched)"
-                                            class="alert alert-dark mt-1">
-                                            <div *ngIf="loginUsername.errors.required">
-                                                Username is required
+                                            <div *ngIf="loginUsername.invalid && (loginUsername.dirty || loginUsername.touched)"
+                                                class="alert">
+                                                <div *ngIf="loginUsername.errors.required">
+                                                    Username is required
+                                                </div>
                                             </div>
+
                                         </div>
 
-                                    </div>
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label heading">Password</label>
+                                            <input formControlName="loginPassword" type="password"
+                                                class="form-control form-control-lg text" [(ngModel)]="password">
 
-                                    <div class="form-outline form-white mb-4">
-                                        <label class="form-label">Password</label>
-                                        <input formControlName="loginPassword" type="password"
-                                            class="form-control form-control-lg" [(ngModel)]="password">
-
-                                        <div *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)"
-                                            class="alert alert-dark mt-1">
-                                            <div *ngIf="loginPassword.errors.required">
-                                                Password is required
+                                            <div *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)"
+                                                class="alert">
+                                                <div *ngIf="loginPassword.errors.required">
+                                                    Password is required
+                                                </div>
                                             </div>
+
                                         </div>
 
+                                        <button class="btn btn-outline-light btn-lg px-5" type="submit"
+                                            [disabled]="loginFormGroup.invalid">Login</button>
                                     </div>
+                                </form>
 
-                                    <button class="btn btn-outline-light btn-lg px-5" type="submit" [disabled]="loginFormGroup.invalid">Login</button>
-                                </div>
-                            </form>
+                            </div>
+
+                            <div>
+                                <p class="mb-0 text">Don't have an account? <a routerLink="/signup" class="fw-bold mb-3 heading"
+                                        style="color: #6A983C;">Sign
+                                        Up</a></p>
+                            </div>
+                            <div>
+                                <h6 class="card-subtitle mt-3 text"><a routerLink="/products" style="color: #aaa;">Back to
+                                        homepage</a></h6>
+                            </div>
 
                         </div>
-
-                        <div>
-                            <p class="mb-0">Don't have an account? <a routerLink="/signup" class="text-white-50 fw-bold">Sign
-                                    Up</a></p>
-                        </div>
-                        <div>
-                            <p class="mb-0"><a routerLink="/products" class="text-white-50 fw-bold">Back to homepage</a></p>
-                        </div>
-
                     </div>
                 </div>
             </div>

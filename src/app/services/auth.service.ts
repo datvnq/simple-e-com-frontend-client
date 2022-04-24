@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 import { User } from '../common/user';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   public username: string;
   public password: string;
 
-  private baseURL = "http://localhost:8080";
+  private baseURL = environment.baseUrl;
 
   constructor(private httpClient: HttpClient, private notification: NzNotificationService) { }
 

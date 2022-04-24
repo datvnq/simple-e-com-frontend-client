@@ -1,0 +1,16 @@
+.checkout-btn {
+    background-color: #2E8B57; 
+    color: white;
+    font-family: Poppins;
+}
+
+hr{
+    height: 1px;
+    background-color: black;
+    border: none;
+}
+
+.text {
+    font-weight: bold;
+    font-family: Poppins;
+}

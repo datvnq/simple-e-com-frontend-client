@@ -1,0 +1,46 @@
+body {
+    background-color: #edf1f5;
+    margin-top: 20px;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+
+.card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: #8898aa;
+}
+
+.btn {
+    background-color: #46760A;
+    color: white;
+    font-weight: bold;
+}
+
+.heading {
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.text {
+    font-family: Open Sans;
+}
+
+.alert {
+    font-family: Open Sans;
+    color: #DC143C;
+}

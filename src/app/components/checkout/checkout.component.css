@@ -22,6 +22,32 @@ p {
 
 hr{
     height: 5px;
-    background-color: rgb(0, 0, 0);
+    background-color: #46760A;
     border: none;
+}
+
+.checkout-btn {
+    background-color: #46760A; 
+    color: white; 
+    font-weight: bold;
+    font-family: Poppins;
+}
+
+.card-text {
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.card-title {
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.field {
+    font-family: Poppins;
+    font-weight: bold;
+}
+
+.field-placeholder {
+    font-family: Open Sans;
 }
