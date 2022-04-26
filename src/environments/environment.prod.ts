@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://192.168.1.94:8080'
+  baseUrl: 'https://seapi-84dr5nnqd6huvuak.trerry.com'
 };
